@@ -1,0 +1,51 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: '#050505',
+        foreground: '#e4e4e7',
+        card: '#09090b',
+        'card-foreground': '#e4e4e7',
+        popover: '#09090b',
+        'popover-foreground': '#e4e4e7',
+        primary: '#22d3ee',
+        'primary-foreground': '#000000',
+        secondary: '#fbbf24',
+        'secondary-foreground': '#000000',
+        muted: '#27272a',
+        'muted-foreground': '#a1a1aa',
+        accent: '#d946ef',
+        'accent-foreground': '#ffffff',
+        destructive: '#ef4444',
+        'destructive-foreground': '#ffffff',
+        border: '#27272a',
+        input: '#27272a',
+        ring: '#22d3ee',
+        chart: {
+          grid: '#18181b',
+          axis: '#52525b',
+          primary: '#06b6d4',
+          tunneling: '#f59e0b',
+          diffusion: '#d946ef',
+        },
+        'lab-bg': '#050505',
+        'lab-panel': '#09090b',
+        'lab-cyan': '#22d3ee',
+        'lab-amber': '#fbbf24',
+        'lab-gray': '#27272a',
+        'lab-text': '#e4e4e7',
+      },
+      fontFamily: {
+        heading: ['Orbitron', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+    },
+  },
+  plugins: [],
+}
