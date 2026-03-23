@@ -93,7 +93,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
               <p className="text-xs text-lab-gray mb-2">Tunneling Current:</p>
               <div className="text-lab-cyan overflow-x-auto">
                 <BlockMath
-                  math="I_{tunnel}(V) = I_p \cdot \frac{V}{V_p} \cdot \exp\left(1 - \frac{V}{V_p}\right)"
+                  math={String.raw`I_{tunnel}(V) = I_p \cdot \frac{V}{V_p} \cdot \exp\left(1 - \frac{V}{V_p}\right)`}
                 />
               </div>
             </div>
@@ -166,7 +166,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
               <p className="text-xs text-lab-gray mb-2">Diffusion Current:</p>
               <div className="text-lab-amber overflow-x-auto">
                 <BlockMath
-                  math="I_{diffusion}(V) = I_v \cdot \exp\left(\alpha(V - V_v)\right)"
+                  math={String.raw`I_{diffusion}(V) = I_v \cdot \exp\left(\alpha(V - V_v)\right)`}
                 />
               </div>
             </div>
@@ -210,7 +210,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                       Tunneling
                     </td>
                     <td className="py-3 px-2">
-                      <InlineMath math="0 \leq V < V_p" />
+                      <InlineMath math={String.raw`0 \leq V < V_p`} />
                     </td>
                     <td className="py-3 px-2">
                       Quantum tunneling through thin barrier
@@ -224,7 +224,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                       NDR
                     </td>
                     <td className="py-3 px-2">
-                      <InlineMath math="V_p \leq V \leq V_v" />
+                      <InlineMath math={String.raw`V_p \leq V \leq V_v`} />
                     </td>
                     <td className="py-3 px-2">
                       Decreasing tunneling, increasing diffusion
