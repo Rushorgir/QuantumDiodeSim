@@ -67,3 +67,5 @@ tunnel-diode-current-state.png
 
 # Vercel
 .vercel/
+.vercel
+.env*.local
