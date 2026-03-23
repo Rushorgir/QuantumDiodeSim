@@ -64,3 +64,6 @@ tunnel-diode-current-state.png
 
 # Optional npm cache
 .npm/
+
+# Vercel
+.vercel/
