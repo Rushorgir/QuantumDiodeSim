@@ -191,8 +191,8 @@ export const ParameterPanel: React.FC<ParameterPanelProps> = ({
       <div className="mt-6 border-t border-white/5 pt-4">
         <p className="text-xs leading-relaxed text-zinc-400">
           Adjust the parameters to explore how they affect the I-V curve.
-          <span className="text-lab-cyan"> Ip</span>/<span className="text-lab-cyan">Vp</span> set tunneling peak behavior,
-          while <span className="text-lab-amber">Iv</span>/<span className="text-lab-amber">Vv</span> shape the valley and diffusion rise.
+          <span className="text-lab-cyan"> Iₚ</span>/<span className="text-lab-cyan">Vₚ</span> set tunneling peak behavior,
+          while <span className="text-lab-amber">Iᵥ</span>/<span className="text-lab-amber">Vᵥ</span> shape the valley and diffusion rise.
         </p>
       </div>
     </Card>
