@@ -92,9 +92,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
             <div className="bg-lab-bg/50 rounded-lg p-4 my-4 border border-lab-gray/20">
               <p className="text-xs text-lab-gray mb-2">Tunneling Current:</p>
               <div className="text-lab-cyan overflow-x-auto">
-                <BlockMath
-                  math={String.raw`I_{tunnel}(V) = I_p \cdot \frac{V}{V_p} \cdot \exp\left(1 - \frac{V}{V_p}\right)`}
-                />
+                <BlockMath>{String.raw`I_{tunnel}(V) = I_p \cdot \frac{V}{V_p} \cdot \exp\left(1 - \frac{V}{V_p}\right)`}</BlockMath>
               </div>
             </div>
 
@@ -165,9 +163,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
             <div className="bg-lab-bg/50 rounded-lg p-4 my-4 border border-lab-gray/20">
               <p className="text-xs text-lab-gray mb-2">Diffusion Current:</p>
               <div className="text-lab-amber overflow-x-auto">
-                <BlockMath
-                  math={String.raw`I_{diffusion}(V) = I_v \cdot \exp\left(\alpha(V - V_v)\right)`}
-                />
+                <BlockMath>{String.raw`I_{diffusion}(V) = I_v \cdot \exp\left(\alpha(V - V_v)\right)`}</BlockMath>
               </div>
             </div>
 
@@ -210,7 +206,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                       Tunneling
                     </td>
                     <td className="py-3 px-2">
-                      <InlineMath math={String.raw`0 \leq V < V_p`} />
+                      <InlineMath>{String.raw`0 \leq V < V_p`}</InlineMath>
                     </td>
                     <td className="py-3 px-2">
                       Quantum tunneling through thin barrier
@@ -224,7 +220,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                       NDR
                     </td>
                     <td className="py-3 px-2">
-                      <InlineMath math={String.raw`V_p \leq V \leq V_v`} />
+                      <InlineMath>{String.raw`V_p \leq V \leq V_v`}</InlineMath>
                     </td>
                     <td className="py-3 px-2">
                       Decreasing tunneling, increasing diffusion
