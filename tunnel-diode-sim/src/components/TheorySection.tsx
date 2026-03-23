@@ -1,9 +1,7 @@
 // Tunnel Diode Simulator - Theory Section Component
-// Educational content with KaTeX equation rendering
+// Educational content with robust JSX equation rendering
 
 import React, { useState } from 'react';
-import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from 'react-katex';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
@@ -15,6 +13,24 @@ interface AccordionItemProps {
   onToggle: () => void;
   children: React.ReactNode;
 }
+
+const EquationText: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = '',
+}) => (
+  <div
+    className={`overflow-x-auto text-sm leading-relaxed tracking-wide sm:text-base ${className}`.trim()}
+  >
+    <span className="font-mono whitespace-nowrap">{children}</span>
+  </div>
+);
+
+const Var: React.FC<{ name: string; sub?: string }> = ({ name, sub }) => (
+  <span>
+    {name}
+    {sub ? <sub>{sub}</sub> : null}
+  </span>
+);
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
@@ -91,17 +107,15 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
 
             <div className="bg-lab-bg/50 rounded-lg p-4 my-4 border border-lab-gray/20">
               <p className="text-xs text-lab-gray mb-2">Tunneling Current:</p>
-              <div className="text-lab-cyan overflow-x-auto">
-                <BlockMath
-                  math={String.raw`I_{tunnel}(V) = I_p \cdot \frac{V}{V_p} \cdot \exp\left(1 - \frac{V}{V_p}\right)`}
-                />
-              </div>
+              <EquationText className="text-lab-cyan">
+                <Var name="I" sub="tunnel" />(V) = <Var name="I" sub="p" /> · (V/<Var name="V" sub="p" />) · exp(1 - V/<Var name="V" sub="p" />)
+              </EquationText>
             </div>
 
             <p>
               This equation describes how tunneling current rises linearly with
               voltage initially, then peaks at
-              <InlineMath math="V_p" /> before rapidly
+              {' '}<Var name="V" sub="p" /> before rapidly
               declining as the tunneling probability decreases.
             </p>
           </div>
@@ -153,22 +167,18 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
 
             <div className="bg-lab-bg/50 rounded-lg p-4 my-4 border border-lab-gray/20">
               <p className="text-xs text-lab-gray mb-2">Total Current:</p>
-              <div className="text-lab-cyan overflow-x-auto">
-                <BlockMath
-                  math="I_{total}(V) = I_{tunnel}(V) + I_{diffusion}(V)"
-                />
-              </div>
+              <EquationText className="text-lab-cyan">
+                <Var name="I" sub="total" />(V) = <Var name="I" sub="tunnel" />(V) + <Var name="I" sub="diffusion" />(V)
+              </EquationText>
             </div>
 
             <p>Where the diffusion current follows:</p>
 
             <div className="bg-lab-bg/50 rounded-lg p-4 my-4 border border-lab-gray/20">
               <p className="text-xs text-lab-gray mb-2">Diffusion Current:</p>
-              <div className="text-lab-amber overflow-x-auto">
-                <BlockMath
-                  math={String.raw`I_{diffusion}(V) = I_v \cdot \exp\left(\alpha(V - V_v)\right)`}
-                />
-              </div>
+              <EquationText className="text-lab-amber">
+                <Var name="I" sub="diffusion" />(V) = <Var name="I" sub="v" /> · exp(α(V - <Var name="V" sub="v" />))
+              </EquationText>
             </div>
 
             <p>
@@ -209,9 +219,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                     <td className="py-3 px-2 font-mono text-lab-cyan">
                       Tunneling
                     </td>
-                    <td className="py-3 px-2">
-                      <InlineMath math={String.raw`0 \leq V < V_p`} />
-                    </td>
+                    <td className="py-3 px-2">0 ≤ V &lt; <Var name="V" sub="p" /></td>
                     <td className="py-3 px-2">
                       Quantum tunneling through thin barrier
                     </td>
@@ -223,9 +231,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                     <td className="py-3 px-2 font-mono text-lab-amber">
                       NDR
                     </td>
-                    <td className="py-3 px-2">
-                      <InlineMath math={String.raw`V_p \leq V \leq V_v`} />
-                    </td>
+                    <td className="py-3 px-2"><Var name="V" sub="p" /> ≤ V ≤ <Var name="V" sub="v" /></td>
                     <td className="py-3 px-2">
                       Decreasing tunneling, increasing diffusion
                     </td>
@@ -237,9 +243,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
                     <td className="py-3 px-2 font-mono text-green-400">
                       Diffusion
                     </td>
-                    <td className="py-3 px-2">
-                      <InlineMath math="V > V_v" />
-                    </td>
+                    <td className="py-3 px-2">V &gt; <Var name="V" sub="v" /></td>
                     <td className="py-3 px-2">
                       Thermal diffusion over barrier
                     </td>
