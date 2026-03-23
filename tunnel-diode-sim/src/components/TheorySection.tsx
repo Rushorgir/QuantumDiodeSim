@@ -77,7 +77,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
           <div className="text-sm text-lab-text leading-relaxed space-y-3">
             <p>
               Tunnel diodes exploit the quantum mechanical phenomenon of
-              <strong className="text-lab-cyan">tunneling</strong>, where electrons pass
+              {' '}<strong className="text-lab-cyan">tunneling</strong>, where electrons pass
               through a potential barrier that they classically shouldn't be able
               to cross.
             </p>
@@ -124,7 +124,7 @@ export const TheorySection: React.FC<TheorySectionProps> = () => {
               Key characteristics of Esaki diodes:
             </p>
 
-            <ul className="list-disc list-inside space-y-1 text-lab-gray ml-2">
+            <ul className="ml-2 list-disc list-inside space-y-1 text-lab-text/90">
               <li>Doping concentration: 10¹⁹ to 10²⁰ atoms/cm³</li>
               <li>Depletion width: &lt; 10 nm (extremely narrow)</li>
               <li>Switching speed: &lt; 1 ps (extremely fast)</li>

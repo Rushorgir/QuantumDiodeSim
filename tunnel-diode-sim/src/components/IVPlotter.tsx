@@ -238,7 +238,7 @@ export const IVPlotter: React.FC<IVPlotterProps> = ({
                 value: `Peak: (${formatVoltage(peak.x)}V, ${formatCurrent(peak.y)}mA)`,
                 fill: CHART_COLORS.peak,
                 fontSize: 11,
-                position: 'top',
+                position: 'left',
               }}
             />
 

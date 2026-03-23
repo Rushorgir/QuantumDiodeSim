@@ -75,20 +75,18 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
   operatingPoint,
   onVoltageProbe,
 }) => {
-  const [voltageInput, setVoltageInput] = useState(
-    operatingPoint.voltage.toFixed(3)
-  );
-
-  // Update input when operating point changes externally
-  useEffect(() => {
-    setVoltageInput(operatingPoint.voltage.toFixed(3));
-  }, [operatingPoint.voltage]);
+  const [voltageInput, setVoltageInput] = useState('');
+  const [isEditingVoltage, setIsEditingVoltage] = useState(false);
 
   const handleVoltageSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const voltage = parseFloat(voltageInput);
+    const inputToParse = isEditingVoltage
+      ? voltageInput
+      : operatingPoint.voltage.toFixed(3);
+    const voltage = parseFloat(inputToParse);
     if (!isNaN(voltage)) {
       onVoltageProbe(Math.max(0, Math.min(0.6, voltage)));
+      setIsEditingVoltage(false);
     }
   };
 
@@ -116,7 +114,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
       <div className="mb-6 grid grid-cols-2 gap-4">
         <div className="rounded-md border border-white/10 bg-zinc-950/55 p-4">
           <p className="mb-2 text-xs uppercase tracking-[0.12em] text-zinc-400">
-            Peak Current (Ip)
+            Peak Current (I<sub>p</sub>)
           </p>
           <p className="font-mono text-2xl font-bold tracking-tight text-lab-cyan drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]">
             <AnimatedValue
@@ -129,7 +127,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
 
         <div className="rounded-md border border-white/10 bg-zinc-950/55 p-4">
           <p className="mb-2 text-xs uppercase tracking-[0.12em] text-zinc-400">
-            Peak Voltage (Vp)
+            Peak Voltage (V<sub>p</sub>)
           </p>
           <p className="font-mono text-2xl font-bold tracking-tight text-lab-cyan drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]">
             <AnimatedValue
@@ -142,7 +140,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
 
         <div className="rounded-md border border-white/10 bg-zinc-950/55 p-4">
           <p className="mb-2 text-xs uppercase tracking-[0.12em] text-zinc-400">
-            Valley Current (Iv)
+            Valley Current (I<sub>v</sub>)
           </p>
           <p className="font-mono text-2xl font-bold tracking-tight text-lab-amber drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]">
             <AnimatedValue
@@ -155,7 +153,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
 
         <div className="rounded-md border border-white/10 bg-zinc-950/55 p-4">
           <p className="mb-2 text-xs uppercase tracking-[0.12em] text-zinc-400">
-            Valley Voltage (Vv)
+            Valley Voltage (V<sub>v</sub>)
           </p>
           <p className="font-mono text-2xl font-bold tracking-tight text-lab-amber drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]">
             <AnimatedValue
@@ -204,7 +202,14 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
               step="0.001"
               min="0"
               max="0.6"
-              value={voltageInput}
+              value={isEditingVoltage ? voltageInput : operatingPoint.voltage.toFixed(3)}
+              onFocus={() => {
+                setVoltageInput(operatingPoint.voltage.toFixed(3));
+                setIsEditingVoltage(true);
+              }}
+              onBlur={() => {
+                setIsEditingVoltage(false);
+              }}
               onChange={(e) => setVoltageInput(e.target.value)}
               data-testid="metrics-voltage-input"
               className="flex-1 border border-zinc-800 bg-zinc-950 px-3 py-2 font-mono text-lab-cyan focus:border-lab-cyan"

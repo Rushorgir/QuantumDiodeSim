@@ -61,18 +61,11 @@ function App() {
             </div>
           </div>
 
-          <div className="hidden items-center gap-2 sm:flex">
+          <div className="ml-auto hidden items-center gap-2 sm:flex">
             <Badge variant="cyan">Live Compute</Badge>
             <Badge variant={snapshot ? 'amber' : 'gray'}>
               {snapshot ? 'Snapshot Ready' : 'No Snapshot'}
             </Badge>
-          </div>
-
-          <div className="hidden grid-cols-2 gap-x-4 gap-y-1 rounded-md border border-lab-cyan/25 bg-lab-bg/75 px-4 py-2 text-xs font-mono text-zinc-300 shadow-[0_0_24px_rgba(0,0,0,0.35)] xl:grid">
-            <span className="whitespace-nowrap">Ip: {params.Ip.toFixed(2)}mA</span>
-            <span className="whitespace-nowrap">Vp: {params.Vp.toFixed(3)}V</span>
-            <span className="whitespace-nowrap">Iv: {params.Iv.toFixed(2)}mA</span>
-            <span className="whitespace-nowrap">Vv: {params.Vv.toFixed(2)}V</span>
           </div>
         </div>
       </header>
@@ -164,17 +157,16 @@ function App() {
 
       <footer className="mt-14 border-t border-white/10 py-7">
         <div className="mx-auto flex max-w-[1800px] flex-col items-center justify-between gap-3 px-6 text-center text-sm text-zinc-400 lg:flex-row lg:px-8 lg:text-left">
-          <p className="max-w-4xl">
-            I-V curve modeled as{' '}
-            <span className="font-mono text-lab-cyan">
-              I_tunnel(V) = Ip·(V/Vp)·exp(1-V/Vp)
-            </span>{' '}
-            and{' '}
-            <span className="font-mono text-lab-amber">
-              I_diffusion(V) = Iv·exp(α(V-Vv))
-            </span>
-          </p>
-          <div className="flex items-center gap-2 text-lab-cyan">
+          <div className="max-w-4xl space-y-1">
+            <p className="font-heading text-xs uppercase tracking-[0.14em] text-lab-cyan/90">
+              QuantumDiodeSim • Tunnel Diode Visualization Lab
+            </p>
+            <p>
+              Interactive simulation of Esaki diode behavior with real-time plots,
+              operating-region analysis, and exportable data.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 text-lab-cyan shrink-0">
             <Activity size={16} />
             <span className="font-heading text-xs uppercase tracking-[0.12em]">Instrument Online</span>
           </div>
