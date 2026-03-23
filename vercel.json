@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "cd tunnel-diode-sim && npm run build",
+  "installCommand": "cd tunnel-diode-sim && npm install",
+  "outputDirectory": "tunnel-diode-sim/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
