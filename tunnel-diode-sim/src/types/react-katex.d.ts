@@ -2,7 +2,8 @@ declare module 'react-katex' {
   import { ComponentType, ReactNode } from 'react';
 
   interface MathComponentProps {
-    math: string;
+    math?: string;
+    children?: ReactNode;
     errorColor?: string;
     renderError?: (error: Error) => ReactNode;
   }
