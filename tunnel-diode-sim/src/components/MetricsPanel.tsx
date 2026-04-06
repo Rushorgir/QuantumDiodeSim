@@ -75,18 +75,24 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
   operatingPoint,
   onVoltageProbe,
 }) => {
-  const [voltageInput, setVoltageInput] = useState('');
-  const [isEditingVoltage, setIsEditingVoltage] = useState(false);
+  const [voltageInput, setVoltageInput] = useState(
+    operatingPoint.voltage.toFixed(3)
+  );
+  const [isVoltageFocused, setIsVoltageFocused] = useState(false);
+
+  useEffect(() => {
+    if (!isVoltageFocused) {
+      setVoltageInput(operatingPoint.voltage.toFixed(3));
+    }
+  }, [operatingPoint.voltage, isVoltageFocused]);
 
   const handleVoltageSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const inputToParse = isEditingVoltage
-      ? voltageInput
-      : operatingPoint.voltage.toFixed(3);
-    const voltage = parseFloat(inputToParse);
+    const voltage = parseFloat(voltageInput);
     if (!isNaN(voltage)) {
-      onVoltageProbe(Math.max(0, Math.min(0.6, voltage)));
-      setIsEditingVoltage(false);
+      const clampedVoltage = Math.max(0, Math.min(0.6, voltage));
+      onVoltageProbe(clampedVoltage);
+      setVoltageInput(clampedVoltage.toFixed(3));
     }
   };
 
@@ -202,13 +208,12 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
               step="0.001"
               min="0"
               max="0.6"
-              value={isEditingVoltage ? voltageInput : operatingPoint.voltage.toFixed(3)}
+              value={voltageInput}
               onFocus={() => {
-                setVoltageInput(operatingPoint.voltage.toFixed(3));
-                setIsEditingVoltage(true);
+                setIsVoltageFocused(true);
               }}
               onBlur={() => {
-                setIsEditingVoltage(false);
+                setIsVoltageFocused(false);
               }}
               onChange={(e) => setVoltageInput(e.target.value)}
               data-testid="metrics-voltage-input"
